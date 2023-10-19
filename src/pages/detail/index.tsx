@@ -68,11 +68,32 @@ export function Detail() {
             {
                cripto === details?.symbol ? (
                     <div className={style.container}>
-                        <h1 className={style.center}> Nome: {details?.name}</h1>
-                        <span>Símbolo: {details?.symbol}</span>
-                        <span>Preço: {details?.formatedPrice}</span>
-                        <span>Mercado: {details?.formatedMarket}</span>
-                        <span>Ranking: {details?.rank}</span>
+                        <div className={style.top}>
+                            <strong className={style.center}>{details?.name}</strong>
+                            <span>{details?.symbol}</span>
+                        </div>
+
+                       <div className={style.low}>
+                            <span className={style.info}>
+                                 <strong>Preço: </strong>
+                                 {details?.formatedPrice}
+                            </span>
+
+                            <span className={style.info}>
+                                <strong>Maior preço 24h: </strong>
+                                {details?.formatedHighprice}
+                            </span>
+
+                            <span className={style.info}>
+                                <strong>Menor preço 24h: </strong>
+                                {details?.formatedLowprice}
+                            </span>
+
+                            <span className={style.info}>
+                                <strong>Valor mercado: </strong>
+                                {details?.formatedMarket}
+                            </span>
+                       </div>
                     </div>
                 ) 
                 : 
