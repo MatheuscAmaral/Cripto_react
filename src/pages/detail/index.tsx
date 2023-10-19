@@ -1,6 +1,8 @@
 import {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import style from './detail.module.css'
+
+
 
 interface CoinProp {
     name: string;
@@ -23,13 +25,17 @@ export function Detail() {
     const { cripto } = useParams();
     const [details, setDetails] = useState<CoinProp>();
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         function getData(){
             fetch(`https://sujeitoprogramador.com/api-cripto/coin/?key=b334044337509c83&pref=BRL&symbol=${cripto}`)
             .then((Response) => Response.json())
             .then((data: CoinProp) => {
-               
+
+                if(data.error) {
+                    navigate("/")
+                }
 
                 let price = Intl.NumberFormat("pt-br", {
                     style: "currency",
@@ -65,9 +71,7 @@ export function Detail() {
 
     return(
        <>
-            {
-               cripto === details?.symbol ? (
-                    <div className={style.container}>
+            <div className={style.container}>
                         <div className={style.top}>
                             <strong className={style.center}>{details?.name}</strong>
                             <span>{details?.symbol}</span>
@@ -95,14 +99,6 @@ export function Detail() {
                             </span>
                        </div>
                     </div>
-                ) 
-                : 
-                (
-                    <div>
-                        <h1>A moeda pesquisada não existe.</h1>
-                    </div>
-                )
-            }
        </>
     )
 }

@@ -32,3 +32,18 @@
     display: flex;
     justify-content: space-between;
 }
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(35, 34, 34);
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.center img {
+    width: 120px;
+}

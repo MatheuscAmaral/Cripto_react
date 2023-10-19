@@ -3,9 +3,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 65vh;
+    gap: 1.5rem;
   }
   
+.notFound button {
+  padding: 9px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: 0.4s;
+}
+
+.notFound button:hover {
+  transform: scale(1.07);
+}
+
   .notFound img {
-    width: 400px;
+    width: 300px;
+  }
+
+  .backHome {
+    text-decoration: none;
+    color: black;
   }

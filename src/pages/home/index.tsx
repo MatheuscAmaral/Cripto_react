@@ -5,8 +5,6 @@ import { BiSearch } from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom';
 
 
-//https://coinlib.io/api/v1/coinlist?key=b334044337509c83&pref
-
 
 interface CoinProps {
     name: string;
