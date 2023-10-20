@@ -73,7 +73,7 @@ export function Detail() {
        <>
             <div className={style.container}>
                         <div className={style.top}>
-                            <strong className={style.center}>{details?.name}</strong>
+                            <strong>{details?.name}</strong>
                             <span>{details?.symbol}</span>
                         </div>
 
