@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link} from 'react-router-dom'
 import style from './detail.module.css'
 
 
@@ -71,34 +71,48 @@ export function Detail() {
 
     return(
        <>
-            <div className={style.container}>
-                        <div className={style.top}>
-                            <strong>{details?.name}</strong>
-                            <span>{details?.symbol}</span>
-                        </div>
+            {cripto && cripto != details?.error ? (
+                <div className={style.container}>
+                <div className={style.top}>
+                    <strong>{details?.name}</strong>
+                    <span>{details?.symbol}</span>
+                </div>
 
-                       <div className={style.low}>
-                            <span className={style.info}>
-                                 <strong>Preço: </strong>
-                                 {details?.formatedPrice}
-                            </span>
+                <div className={style.low}>
+                    <span className={style.info}>
+                            <strong>Preço: </strong>
+                            {details?.formatedPrice}
+                    </span>
 
-                            <span className={style.info}>
-                                <strong>Maior preço 24h: </strong>
-                                {details?.formatedHighprice}
-                            </span>
+                    <span className={style.info}>
+                        <strong>Maior preço 24h: </strong>
+                        {details?.formatedHighprice}
+                    </span>
 
-                            <span className={style.info}>
-                                <strong>Menor preço 24h: </strong>
-                                {details?.formatedLowprice}
-                            </span>
+                    <span className={style.info}>
+                        <strong>Menor preço 24h: </strong>
+                        {details?.formatedLowprice}
+                    </span>
 
-                            <span className={style.info}>
-                                <strong>Valor mercado: </strong>
-                                {details?.formatedMarket}
-                            </span>
-                       </div>
-                    </div>
+                    <span className={style.info}>
+                        <strong>Valor mercado: </strong>
+                        {details?.formatedMarket}
+                    </span>
+                </div>
+            </div>  
+            )
+            :
+             (
+                <div>
+                    <h4>A moeda pesquisada não existe!</h4>
+                    <Link to="/">
+                        <button>
+                            Voltar para a home
+                        </button>
+                    </Link>
+                </div>
+             )  
+            }
        </>
     )
 }
