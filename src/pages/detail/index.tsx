@@ -71,7 +71,7 @@ export function Detail() {
 
     return(
        <>
-            {cripto && cripto != details?.error ? (
+            {
                 <div className={style.container}>
                 <div className={style.top}>
                     <strong>{details?.name}</strong>
@@ -100,18 +100,6 @@ export function Detail() {
                     </span>
                 </div>
             </div>  
-            )
-            :
-             (
-                <div>
-                    <h4>A moeda pesquisada não existe!</h4>
-                    <Link to="/">
-                        <button>
-                            Voltar para a home
-                        </button>
-                    </Link>
-                </div>
-             )  
             }
        </>
     )

@@ -21,46 +21,56 @@ interface CoinProps {
 interface DataProps {
     coins: CoinProps[];
 }
-
 export function Home() {
-
+    
     const [coins, setCoins] = useState<CoinProps[]>([]);
     const [inputValue, setInputValue] = useState("");
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-
+    
     useEffect(() => {
         function getData() {
             fetch(`https://sujeitoprogramador.com/api-cripto/?key=b334044337509c83&pref=BRL`)
             .then((Response) => Response.json())
             .then((data: DataProps) => {
                 let coinsData = data.coins.slice(0, 15);
-
+                
                 let price = Intl.NumberFormat("pt-br", {
                     style: "currency",
                     currency: "BRL"
                 })
-
+                
                 const formatResult = coinsData.map((item) => {
                     const formated = {
                         ...item,
-                            formatedPrice: price.format(Number(item.price)),
-                            formatedMarket: price.format(Number(item.market_cap))
+                        formatedPrice: price.format(Number(item.price)),
+                        formatedMarket: price.format(Number(item.market_cap))
                     }
 
                     return formated;
                 })
-
+                
                 {coins}
-
+                
                 setCoins(formatResult);
                 setLoading(false);
             })
-          
+            
         }
 
         getData();
     }, [])
+    
+    
+    function handleSearch(e: FormEvent) {
+        e.preventDefault();
+        
+        if(inputValue === "") return;
+    
+        else {
+            navigate(`/detail/${inputValue}`)
+        }
+    }
 
     if(loading) {
         return(
@@ -72,16 +82,7 @@ export function Home() {
             </div>
         )
     }
-
-    function handleSearch(e: FormEvent) {
-        e.preventDefault();
-        
-        if(inputValue === "") return;
-
-        else {
-            navigate(`/detail/${inputValue}`)
-        }
-    }
+    
 
     return (
         <main className={style.container} id='main'>
